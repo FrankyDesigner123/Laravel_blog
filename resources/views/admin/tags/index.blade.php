@@ -6,34 +6,34 @@
   <div class="panel panel-default">
 
     <div class="panel-heading">
-      Categories
+      Tags
     </div>
     <div class="panel-body">
 
           <table class="table table-hover">
 
             <thead>
-              <th>Category name</th>
+              <th>Tag name</th>
               <th>Editting</th>
               <th>Deleting</th>
             </thead>
 
             <tbody>
-              @if($categories->count() > 0)
-                  @foreach($categories as $category)
+              @if($tags->count() > 0)
+                  @foreach($tags as $tag)
                     <tr>
                       <td>
-                        {{ $category->name }}
+                        {{ $tag->tag }}
                       </td>
 
                       <td>
-                        <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="btn btn-xs btn-info">
+                        <a href="{{ route('tag.edit', ['id' => $tag->id]) }}" class="btn btn-xs btn-info">
                             Edit
                         </a>
                       </td>
 
                       <td>
-                        <a href="{{ route('category.delete', ['id' => $category->id]) }}" class="btn btn-xs btn-danger">
+                        <a href="{{ route('tag.delete', ['id' => $tag->id]) }}" class="btn btn-xs btn-danger">
                             Delete
                         </a>
                       </td>
@@ -42,7 +42,7 @@
                   @endforeach
               @else
                   <tr>
-                      <th colspan="5" class="text-center">No category yet.</th>
+                      <th colspan="5" class="text-center">No tags yet.</th>
                   </tr>
 
               @endif

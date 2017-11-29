@@ -5,7 +5,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      Published posts
+      Trashed posts
     </div>
     <div class="panel-body">
 
@@ -14,8 +14,8 @@
             <thead>
               <th>Image</th>
               <th>Title</th>
-              <th>Edit</th>
-              <th>Trash</th>
+              <th>Restore</th>
+              <th>Delete</th>
             </thead>
 
             <tbody>
@@ -26,25 +26,23 @@
                       <td><img src="{{ $post->featured }}" alt="{{ $post->title }}" width="90px" height="50px"/></td>
                       <td>{{ $post->title }}</td>
                       <td>
-                        <a href=" {{ route('post.edit', ['id' => $post->id] ) }}" class="btn btn-xs btn-info">
-                          Edit
+                        <a href=" {{ route('post.restore', ['id' => $post->id] ) }}" class="btn btn-xs btn-success">
+                          Restore
                         </a>
                       </td>
                       <td>
-                        <a href=" {{ route('post.delete', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">
-                          Trash
+                        <a href=" {{ route('post.kill', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">
+                          Delete
                         </a>
                       </td>
                     </tr>
                   @endforeach
 
-              @else
-                <tr>
-                    <th colspan="5" class="text-center">No published posts.</th>
-                </tr>
-
-              @endif
-
+                @else
+                  <tr>
+                      <th colspan="5" class="text-center">No trashed posts.</th>
+                  </tr>
+                @endif
 
             </tbody>
           </table>

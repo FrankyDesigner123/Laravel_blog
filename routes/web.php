@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/test', function(){
+  return App\Post::find(7)->tags;
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -39,9 +43,39 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     'as' => 'post.store'
   ]);
 
+  Route::get('/post/delete/{id}', [
+    'uses' => 'PostsController@destroy',
+    'as' => 'post.delete'
+  ]);
+
   Route::get('/posts', [
     'uses' => 'PostsController@index',
     'as' => 'posts'
+  ]);
+
+  Route::get('/posts/trashed', [
+    'uses' => 'PostsController@trashed',
+    'as' => 'posts.trashed'
+  ]);
+
+  Route::get('/posts/kill/{id}', [
+    'uses' => 'PostsController@kill',
+    'as' => 'post.kill'
+  ]);
+
+  Route::get('/posts/restore/{id}', [
+    'uses' => 'PostsController@restore',
+    'as' => 'post.restore'
+  ]);
+
+  Route::get('/posts/edit/{id}', [
+    'uses' => 'PostsController@edit',
+    'as' => 'post.edit'
+  ]);
+
+  Route::post('/post/update/{id}', [
+    'uses' => 'PostsController@update',
+    'as' => 'post.update'
   ]);
 
 
@@ -77,6 +111,38 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
   Route::get('/categories', [
     'uses' => 'CategoriesController@index',
     'as' => 'categories'
+  ]);
+
+
+
+  Route::get('/tags', [
+    'uses' => 'TagsController@index',
+    'as' => 'tags'
+  ]);
+
+  Route::get('/tag/edit/{id}', [
+    'uses' => 'TagsController@edit',
+    'as' => 'tag.edit'
+  ]);
+
+  Route::post('/tag/update/{id}', [
+    'uses' => 'TagsController@update',
+    'as' => 'tag.update'
+  ]);
+
+  Route::get('/tag/delete/{id}', [
+    'uses' => 'TagsController@destroy',
+    'as' => 'tag.delete'
+  ]);
+
+  Route::get('/tag/create', [
+    'uses' => 'TagsController@create',
+    'as' => 'tag.create'
+  ]);
+
+  Route::post('/tag/store', [
+    'uses' => 'TagsController@store',
+    'as' => 'tag.store'
   ]);
 
 });
