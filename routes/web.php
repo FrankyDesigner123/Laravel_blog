@@ -11,6 +11,19 @@
 |
 */
 
+
+//MailChimp
+Route::post('/subscribe', function(){
+  $email = request('email');
+
+  Newsletter::subscribe($email);
+
+  Session::flash('subscribed', 'Succesfully subscribed.');
+  return redirect()->back();
+});
+
+
+
 Route::get('/test', function(){
   return App\User::find(1)->profile;
 });
